@@ -24,6 +24,7 @@
 
 1- Open the `index.html` file in your browser
 * Feed lists should load and test results will appear at the bottom of the page
+
 2- To change the `index` variable value in the `New Feed Selection` suite test
 * Open `feedreader.js` file and go for the `New Feed Selection` suite test, then change the value of the `index` value
 **note:** index value should not exceed the `allfeeds` array length 

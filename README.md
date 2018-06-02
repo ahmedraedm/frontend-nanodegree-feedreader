@@ -8,12 +8,15 @@
 * are defined
 * URL defined & not empty
 * Name defined & not empty
+
 2- The menu
 * element is hidden by default
 * display when clicked
+
 3- Initial Entries
 * At least a single .entry element within the .feed container
 4- New Feed Selection
+
 * content actually changes
 **note:** This spec compares the page contents of 2 different feeds, to ensure page contents have changed after a new feed is loaded
 

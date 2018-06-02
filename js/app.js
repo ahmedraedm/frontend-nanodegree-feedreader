@@ -41,6 +41,7 @@ function init() {
  * which will be called after everything has run successfully.
  */
  function loadFeed(id, cb) {
+    //  debugger;
      var feedUrl = allFeeds[id].url,
          feedName = allFeeds[id].name;
 
@@ -50,7 +51,6 @@ function init() {
        data: JSON.stringify({url: feedUrl}),
        contentType:"application/json",
        success: function (result, status){
-
                  var container = $('.feed'),
                      title = $('.header-title'),
                      entries = result.feed.entries,

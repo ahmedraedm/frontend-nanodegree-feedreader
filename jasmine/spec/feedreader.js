@@ -123,7 +123,7 @@ $(function() {
     describe('New Feed Selection',function() {
         let feedContainer = document.querySelector(".feed")
         let currentLoadFeed = [], newLoadFeed = [];
-        let minItemsLength =0, index = 3;
+        let minItemsLength =0, index = 1;
         beforeEach(function(done) {
             $('.feed').children('a').each(function () {
                 currentLoadFeed.push(this.children["0"].children["0"].innerText); 

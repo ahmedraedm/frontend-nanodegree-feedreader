@@ -123,7 +123,7 @@ $(function() {
     describe('New Feed Selection',function() {
         let feedContainer = document.querySelector(".feed")
         let currentLoadFeed = [], newLoadFeed = [];
-        let minItemsLength =0, index = 4;
+        let minItemsLength =0, index = 3;
         beforeEach(function(done) {
             $('.feed').children('a').each(function () {
                 currentLoadFeed.push(this.children["0"].children["0"].innerText); 
@@ -148,7 +148,7 @@ $(function() {
         it('content actually changes',function(done) {
             minItemsLength = Math.min(currentLoadFeed.length,newLoadFeed.length)
             for (i = 0; i < minItemsLength; i++) {
-                expect(currentLoadFeed[i]).not.toEqual(newLoadFeed[i]);
+                expect(currentLoadFeed[i]).not.toEqual(newLoadFeed[i]); // compares every single article of the new loaded feed with the old one to ensure the page has loaded different new contents
             }
             done();
         })

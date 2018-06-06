@@ -86,7 +86,8 @@ $(function() {
         /* This test ensures that when the loadFeed function is called and completes its work, there is at least
          * a single .entry element within the .feed container.*/
         it('At least a single .entry element within the .feed container',function(done) {
-            expect(feedContainer.children.length).not.toBeLessThan(1);
+            expect(document.querySelector('.feed').querySelectorAll('.entry').length).toBeGreaterThan(0);
+            // expect(feedContainer.children.length).not.toBeLessThan(1);
             done();
         })
     })
@@ -97,21 +98,23 @@ $(function() {
         let currentLoadFeed = [], newLoadFeed = [];
         let minItemsLength =0, index = 1;
         beforeEach(function(done) {
-            $('.feed').children('a').each(function () {
-                currentLoadFeed.push(this.children["0"].children["0"].innerText); 
-            });
-            //load different new feed
-            if (index>=allFeeds.length) {
-                throw new Error('Index value entered is out-of-bound the array access')
-            }else{
-            loadFeed(index,function() {                
+            loadFeed(0,function() {                
                 $('.feed').children('a').each(function () {
-                    newLoadFeed.push(this.children["0"].children["0"].innerText); 
+                    currentLoadFeed.push(this.children["0"].children["0"].innerText); 
                 });
-                 done();
+                // ensures that allfeeds[index] value is within the 'allfeeds' array boundary
+                debugger;
+                if (index>=allFeeds.length) {
+                    throw new Error('Index value entered is out-of-bound the array access')
+                }else{
+                    loadFeed(index,function() {                
+                        $('.feed').children('a').each(function () {
+                            newLoadFeed.push(this.children["0"].children["0"].innerText); 
+                        });
+                        done();
+                        })
+                    }
             })
-        }       
-            
         })
         /* This test ensures that when a new feed is loaded by the loadFeed function, the content actually changes.*/
         it('content actually changes',function(done) {

@@ -60,15 +60,15 @@ $(function() {
 
         /* This test ensures the menu element is hidden by default.*/
         it('element is hidden by default',function () {
-            expect(menuElement.classList.contains('menu-hidden')).toBe(true);
+            expect($(document.body).hasClass('menu-hidden')).toBe(true);
         })
 
         /* This test ensures that the menu changes visibility when the menu icon is clicked.*/
          it('display when clicked',function () {
             menuIcon.click();
-            expect(menuElement.classList.contains('menu-hidden')).toBe(false);
+            expect($(document.body).hasClass('menu-hidden')).toBe(false);
             menuIcon.click();
-            expect(menuElement.classList.contains('menu-hidden')).toBe(true);
+            expect($(document.body).hasClass('menu-hidden')).toBe(true);
         })
     })
 
@@ -96,24 +96,22 @@ $(function() {
     describe('New Feed Selection',function() {
         let feedContainer = document.querySelector(".feed")
         let currentLoadFeed = [], newLoadFeed = [];
-        let minItemsLength =0, index = 1;
+        let minItemsLength =0;
+        
         beforeEach(function(done) {
-            loadFeed(0,function() {                
+
+            loadFeed(0,function(loadFeed1) {                
                 $('.feed').children('a').each(function () {
                     currentLoadFeed.push(this.children["0"].children["0"].innerText); 
                 });
-                // ensures that allfeeds[index] value is within the 'allfeeds' array boundary
-                debugger;
-                if (index>=allFeeds.length) {
-                    throw new Error('Index value entered is out-of-bound the array access')
-                }else{
-                    loadFeed(index,function() {                
-                        $('.feed').children('a').each(function () {
-                            newLoadFeed.push(this.children["0"].children["0"].innerText); 
-                        });
-                        done();
-                        })
-                    }
+                loadFeed1;
+            })
+            
+            let loadFeed1=loadFeed(1,function() {                
+                $('.feed').children('a').each(function () {
+                    newLoadFeed.push(this.children["0"].children["0"].innerText); 
+                });
+                done();
             })
         })
         /* This test ensures that when a new feed is loaded by the loadFeed function, the content actually changes.*/

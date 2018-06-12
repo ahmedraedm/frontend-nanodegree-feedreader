@@ -97,31 +97,24 @@ $(function() {
         let feedContainer = document.querySelector(".feed")
         let currentLoadFeed = [], newLoadFeed = [];
         let minItemsLength =0;
+        var oldFeed; var newFeed;
         
         beforeEach(function(done) {
-
-            loadFeed(0,function(loadFeed1) {                
-                $('.feed').children('a').each(function () {
-                    currentLoadFeed.push(this.children["0"].children["0"].innerText); 
-                });
-                loadFeed1;
-            })
             
-            let loadFeed1=loadFeed(1,function() {                
-                $('.feed').children('a').each(function () {
-                    newLoadFeed.push(this.children["0"].children["0"].innerText); 
-                });
+            loadFeed(0,function() {                
+                oldFeed = $('.feed').contents();
+                done();
+            })
+
+            loadFeed(1,function() {                
+                newFeed = $('.feed').contents();
                 done();
             })
         })
         /* This test ensures that when a new feed is loaded by the loadFeed function, the content actually changes.*/
-        it('content actually changes',function(done) {
-            minItemsLength = Math.min(currentLoadFeed.length,newLoadFeed.length)
-            for (i = 0; i < minItemsLength; i++) {
-                expect(currentLoadFeed[i]).not.toEqual(newLoadFeed[i]); // compares every single article of the new loaded feed with the old one to ensure the page has loaded different new contents
-            }
-            done();
-        })
+        it('content actually changes',function() {
+                expect(oldFeed).not.toBe(newFeed);
+            })
     })
         
 }());
